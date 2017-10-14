@@ -6,6 +6,6 @@
 
 I love snacks
 
-![Sgt. ChowDown](https://i.pinimg.com/736x/1b/ee/dd/1beedd8fa3673370cdbe8227b0665463.jpg)
+![Sgt. ChowDown](https://i.pinimg.com/736x/1b/ee/dd/1beedd8fa3673370cdbe8227b0665463.jpg "Look at this weiner!")
 
 ![Snack Buddies](resources/snacks.gif "Gotta have my snacks!")
