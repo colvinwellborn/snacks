@@ -19,7 +19,12 @@ sub snackinventory {
 		"Pocky",
 		"Pocky For Men",
 		"Guac",
-		"Cheez-Its"
+		"Cheez-Its",
+		"English Toffee",
+		"Pizza Rolls",
+		"Goldfish (Crackers)",
+		"Goldfish (Animals)",
+		"Fruit Snacks"
 	);
 	
 	checkReturn($mysql2);
