@@ -6,6 +6,6 @@
 
 I love snacks
 
-![Sgt. ChowDown](/resources/sgt-chowdown.jgp)
+![Sgt. ChowDown](/resources/sgt-chowdown.jpg)
 
 ![Snack Buddies](resources/snacks.gif "Gotta have my snacks!")
