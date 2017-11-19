@@ -31,12 +31,13 @@ void draw() {
 }
 
 /*
- * Loads the snacks array with snacks from the snacks_sheet PImage
+ * Loads the snacks array with Snack objects.
+ * A Snack object is created for each snack in the snacks_sheet PImage
  */
 void loadSnacks() {
-  for (int i = 0; i < 10; i++) {
-    for (int j = 0; j < 10; j++) {
-      PImage snack = createImage(SNACK_WIDTH, SNACK_HEIGHT, ARGB);
+  for (int i = 0; i < SNACK_COUNT; i++) {
+    for (int j = 0; j < SNACK_COUNT; j++) {
+      PImage snack = createImage(width, height, ARGB);
       snack.copy(snacks_sheet, BORDER + i * SNACK_WIDTH, BORDER + j * SNACK_HEIGHT, SNACK_WIDTH, SNACK_HEIGHT, 0, 0, width, height);
       snacks.add(new Snack(snack));
     }
@@ -51,13 +52,23 @@ void drawSnack() {
   snacks.get(i).display();
 }
 
+/*
+ * A class to represent a Snack.
+ * A Snack has a snack PImage and the ability to display itself
+ */
 public class Snack {
-  PImage snack;
+  PImage snack;  // the image of the snack
   
+  /*
+   * Snack constructor
+   */
   public Snack(PImage snack) {
     this.snack = snack;
   }
   
+  /*
+   * Output the snack image to the screen
+   */
   void display() {
      image(snack, 0, 0);
   }
