@@ -58,18 +58,20 @@ void drawSnack() {
  */
 public class Snack {
   PImage snack;  // the image of the snack
+  PVector v;
   
   /*
    * Snack constructor
    */
   public Snack(PImage snack) {
     this.snack = snack;
+    v = new PVector(int(random(0, width)), int(random(0, height)));
   }
   
   /*
    * Output the snack image to the screen
    */
   void display() {
-     image(snack, 0, 0);
+     image(snack, v.x, v.y);
   }
 }
