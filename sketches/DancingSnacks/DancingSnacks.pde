@@ -11,7 +11,7 @@ static final int SNACK_WIDTH = 62;   // Width of a snack sprite
 static final int SNACK_HEIGHT = 62;  // Height of a snack sprite
 
 PImage snacks_sheet;
-PImage[][] snacks;
+ArrayList<Snack> snacks;
 
 void setup() {
   // set up screen
@@ -21,12 +21,7 @@ void setup() {
   
   // load sprite sheet
   snacks_sheet = loadImage("snacks.png");
-  snacks = new PImage[SNACK_COUNT][SNACK_COUNT];
-  for (int i = 0; i < SNACK_COUNT; i++) {
-    for (int j = 0; j < SNACK_COUNT; j++) {
-      snacks[i][j] = createImage(width, height, ARGB);
-    }
-  }
+  snacks = new ArrayList<Snack>();
   loadSnacks();
 }
 
@@ -41,7 +36,9 @@ void draw() {
 void loadSnacks() {
   for (int i = 0; i < 10; i++) {
     for (int j = 0; j < 10; j++) {
-      snacks[i][j].copy(snacks_sheet, BORDER + i * SNACK_WIDTH, BORDER + j * SNACK_HEIGHT, SNACK_WIDTH, SNACK_HEIGHT, 0, 0, width, height);
+      PImage snack = createImage(SNACK_WIDTH, SNACK_HEIGHT, ARGB);
+      snack.copy(snacks_sheet, BORDER + i * SNACK_WIDTH, BORDER + j * SNACK_HEIGHT, SNACK_WIDTH, SNACK_HEIGHT, 0, 0, width, height);
+      snacks.add(new Snack(snack));
     }
   }
 }
@@ -50,7 +47,18 @@ void loadSnacks() {
  * Draws a random snack from the snacks array
  */
 void drawSnack() {
-  int i = int(random(0, 10));
-  int j = int(random(0, 10));
-  image(snacks[i][j], 0, 0);
+  int i = int(random(0, snacks.size()));
+  snacks.get(i).display();
+}
+
+public class Snack {
+  PImage snack;
+  
+  public Snack(PImage snack) {
+    this.snack = snack;
+  }
+  
+  void display() {
+     image(snack, 0, 0);
+  }
 }
