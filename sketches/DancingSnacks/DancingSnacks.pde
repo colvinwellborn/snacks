@@ -37,11 +37,22 @@ void draw() {
  * Grabs a random snack from the snacks_sheet
  */
 void getSnack() {
-  int i = int(random(0, SNACK_COUNT));
-  int j = int(random(0, SNACK_COUNT));
-  PImage snack = createImage(SNACK_WIDTH, SNACK_HEIGHT, ARGB);
-  snack.copy(snacks_sheet, BORDER + i * SNACK_WIDTH, BORDER + j * SNACK_HEIGHT, SNACK_WIDTH, SNACK_HEIGHT, 0, 0, SNACK_WIDTH, SNACK_HEIGHT);
-  snacks.add(new Snack(snack));
+  if (snacks.size() < 100) {
+    int i = int(random(0, SNACK_COUNT));
+    int j = int(random(0, SNACK_COUNT));
+    PImage snack = createImage(SNACK_WIDTH, SNACK_HEIGHT, ARGB);
+    snack.copy(snacks_sheet, BORDER + i * SNACK_WIDTH, BORDER + j * SNACK_HEIGHT, SNACK_WIDTH, SNACK_HEIGHT, 0, 0, SNACK_WIDTH, SNACK_HEIGHT);
+    snacks.add(new Snack(snack));
+  }
+}
+
+/*
+ * Deletes the first snack from the snacks ArrayList
+ */
+void removeSnack() {
+  if (snacks.size() > 0) {
+    snacks.remove(0);
+  }
 }
 
 /*
@@ -50,6 +61,9 @@ void getSnack() {
 void keyPressed() {
   if (key == ' ') {
     getSnack();
+  }
+  if (key == 'd') {
+    removeSnack();
   }
 }
 
