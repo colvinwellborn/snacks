@@ -13,6 +13,8 @@ static final int SNACK_HEIGHT = 62;  // Height of a snack sprite
 final color PINK = color(255, 106, 213);
 final color PURPLE = color(173, 140, 255);
 
+PImage splash_screen;                // splash screen for program load
+boolean isSplash;                    // true if in splash screen; false else
 PImage snacks_sheet;                 // sprite sheet of all snacks
 ArrayList<Snack> snacks;             // a container for all Snack objects
 PFont font;                          // font object for cheesy 80's font
@@ -24,22 +26,27 @@ PFont font;                          // font object for cheesy 80's font
 void setup() {
   // set up screen
   size(600, 600);
-  
-  // load sprite sheet
-  snacks_sheet = loadImage("snacks_nofill.png");
-  snacks = new ArrayList<Snack>();
-  addSnack();
+  splash_screen = loadImage("snax_deluxe.png");
+  splash_screen.resize(width, height);
+  isSplash = true;
 
   // sets up the font
   font = createFont("SFAlienEncounters-Italic.ttf", 100);
   textFont(font);
+
+  // load sprite sheet
+  snacks_sheet = loadImage("snacks_nofill.png");
+  snacks = new ArrayList<Snack>();
 }
 
 /*
  * Draws any snacks in the snacks ArrayList
  */
 void draw() {
-  background(0);
+  while(isSplash) {
+    image(splash_screen, 0, 0);
+    return;
+  }
   // Draw the gradient
   for (int i = 0; i <= height; i++) {
     float inter = map(i, 0, height, 0, 1);
@@ -94,6 +101,9 @@ void removeSnack() {
  */
 void keyPressed() {
   if (key == ' ') {
+    if (isSplash) {
+      isSplash = false;
+    }
     addSnack();
   }
   if (key == 'd') {
