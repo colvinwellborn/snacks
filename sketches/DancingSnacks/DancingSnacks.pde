@@ -24,7 +24,7 @@ void setup() {
   frameRate(60);
 
   // load sprite sheet
-  snacks_sheet = loadImage("snacks.png");
+  snacks_sheet = loadImage("snacks_nofill.png");
   snacks = new ArrayList<Snack>();
   addSnack();
 }
