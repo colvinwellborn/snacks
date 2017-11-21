@@ -17,7 +17,7 @@ void setup() {
   // set up screen
   size(600, 600);
   background(0);
-  frameRate(15);
+  frameRate(60);
 
   // load sprite sheet
   snacks_sheet = loadImage("snacks.png");
@@ -74,15 +74,15 @@ void keyPressed() {
 public class Snack {
   PImage snack;     // the image of the snack
   PVector v;        // the vector of the snack
-  int xVel = 10;    // the x velocity
-  int yVel = 10;    // the y velocit
+  int xVel = 1;    // the x velocity
+  int yVel = 1;    // the y velocit
 
   /*
    * Snack constructor
    */
   public Snack(PImage snack) {
     this.snack = snack;
-    v = new PVector(int(random(0, width)), int(random(0, height)));
+    v = new PVector(int(random(0, (width - SNACK_WIDTH))), int(random(0, height - SNACK_HEIGHT)));
   }
 
   /*
@@ -97,11 +97,11 @@ public class Snack {
    */
   void update() {
     // Contain the x to the (0, width) range
-    if (v.x < 0 || v.x > width) {
+    if (v.x < 0 || v.x > (width - SNACK_WIDTH)) {
       xVel *= -1;
     }
     // Constrain the y to the (0, height) range
-    if (v.y < 0 || v.y > height) {
+    if (v.y < 0 || v.y > (height - SNACK_HEIGHT)) {
       yVel *= -1;
     }
     // Move the snack
