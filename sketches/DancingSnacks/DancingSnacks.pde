@@ -22,7 +22,7 @@ void setup() {
   // load sprite sheet
   snacks_sheet = loadImage("snacks.png");
   snacks = new ArrayList<Snack>();
-  getSnack();
+  addSnack();
 }
 
 void draw() {
@@ -33,17 +33,22 @@ void draw() {
   }
 }
 
+void addSnack() {
+  if (snacks.size() < 100) {
+    PImage snack = getSnack();
+    snacks.add(new Snack(snack));
+  }
+}
+
 /*
  * Grabs a random snack from the snacks_sheet
  */
-void getSnack() {
-  if (snacks.size() < 100) {
-    int i = int(random(0, SNACK_COUNT));
-    int j = int(random(0, SNACK_COUNT));
-    PImage snack = createImage(SNACK_WIDTH, SNACK_HEIGHT, ARGB);
-    snack.copy(snacks_sheet, BORDER + i * SNACK_WIDTH, BORDER + j * SNACK_HEIGHT, SNACK_WIDTH, SNACK_HEIGHT, 0, 0, SNACK_WIDTH, SNACK_HEIGHT);
-    snacks.add(new Snack(snack));
-  }
+PImage getSnack() {
+  int i = int(random(0, SNACK_COUNT));
+  int j = int(random(0, SNACK_COUNT));
+  PImage snack = createImage(SNACK_WIDTH, SNACK_HEIGHT, ARGB);
+  snack.copy(snacks_sheet, BORDER + i * SNACK_WIDTH, BORDER + j * SNACK_HEIGHT, SNACK_WIDTH, SNACK_HEIGHT, 0, 0, SNACK_WIDTH, SNACK_HEIGHT);
+  return snack;
 }
 
 /*
@@ -60,7 +65,7 @@ void removeSnack() {
  */
 void keyPressed() {
   if (key == ' ') {
-    getSnack();
+    addSnack();
   }
   if (key == 'd') {
     removeSnack();
@@ -99,10 +104,12 @@ public class Snack {
     // Contain the x to the (0, width) range
     if (v.x < 0 || v.x > (width - SNACK_WIDTH)) {
       xVel *= -1;
+      this.snack = getSnack();
     }
     // Constrain the y to the (0, height) range
     if (v.y < 0 || v.y > (height - SNACK_HEIGHT)) {
       yVel *= -1;
+      this.snack = getSnack();
     }
     // Move the snack
     v.x += xVel;
