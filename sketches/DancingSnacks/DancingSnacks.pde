@@ -77,24 +77,36 @@ void keyPressed() {
  * A Snack has a snack PImage and the ability to display itself
  */
 public class Snack {
-  PImage snack;     // the image of the snack
-  PVector v;        // the vector of the snack
-  int xVel = 1;    // the x velocity
-  int yVel = 1;    // the y velocit
+  final float HALF = 0.5;  // a half, for probability
+
+  PImage snack;            // the image of the snack
+  PVector pos;             // a vector for snack position
+  PVector vel;             // a vector of snack velocity
 
   /*
    * Snack constructor
    */
   public Snack(PImage snack) {
     this.snack = snack;
-    v = new PVector(int(random(0, (width - SNACK_WIDTH))), int(random(0, height - SNACK_HEIGHT)));
+    pos = new PVector(int(random(0, (width - SNACK_WIDTH))), int(random(0, height - SNACK_HEIGHT)));
+    vel = new PVector(0, 0);
+    if (random(0, 1) < HALF) {
+      vel.x = -1;
+    } else {
+      vel.x = 1;
+    }
+    if (random(0, 1) < HALF) {
+      vel.y = -1;
+    } else {
+      vel.y = 1;
+    }
   }
 
   /*
    * Output the snack image to the screen
    */
   void display() {
-    image(snack, v.x, v.y);
+    image(snack, pos.x, pos.y);
   }
 
   /*
@@ -102,17 +114,17 @@ public class Snack {
    */
   void update() {
     // Contain the x to the (0, width) range
-    if (v.x < 0 || v.x > (width - SNACK_WIDTH)) {
-      xVel *= -1;
+    if (pos.x < 0 || pos.x > (width - SNACK_WIDTH)) {
+      vel.x *= -1;
       this.snack = getSnack();
     }
     // Constrain the y to the (0, height) range
-    if (v.y < 0 || v.y > (height - SNACK_HEIGHT)) {
-      yVel *= -1;
+    if (pos.y < 0 || pos.y > (height - SNACK_HEIGHT)) {
+      vel.y *= -1;
       this.snack = getSnack();
     }
     // Move the snack
-    v.x += xVel;
-    v.y += yVel;
+    pos.x += vel.x;
+    pos.y += vel.y;
   }
 }
