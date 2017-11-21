@@ -10,9 +10,13 @@ static final int BORDER = 2;         // size of border around snack_sheet
 static final int SNACK_WIDTH = 62;   // Width of a snack sprite
 static final int SNACK_HEIGHT = 62;  // Height of a snack sprite
 
-PImage snacks_sheet;
-ArrayList<Snack> snacks;
+PImage snacks_sheet;                 // sprite sheet of all snacks
+ArrayList<Snack> snacks;             // a container for all Snack objects
 
+/*
+ * Prepares the canvas, loads the snack_sheet,
+ * and adds an initial snack
+ */
 void setup() {
   // set up screen
   size(600, 600);
@@ -25,6 +29,9 @@ void setup() {
   addSnack();
 }
 
+/*
+ * Draws any snacks in the snacks ArrayList
+ */
 void draw() {
   background(0);
   for (Snack s : snacks) {
@@ -33,6 +40,10 @@ void draw() {
   }
 }
 
+
+/*
+ * Adds a snack to the snacks ArrayList
+ */
 void addSnack() {
   if (snacks.size() < 100) {
     PImage snack = getSnack();
