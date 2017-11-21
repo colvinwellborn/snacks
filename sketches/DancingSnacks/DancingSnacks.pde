@@ -34,20 +34,6 @@ void draw() {
 }
 
 /*
- * Loads the snacks array with Snack objects.
- * A Snack object is created for each snack in the snacks_sheet PImage
- */
-void loadSnacks() {
-  for (int i = 0; i < SNACK_COUNT; i++) {
-    for (int j = 0; j < SNACK_COUNT; j++) {
-      PImage snack = createImage(SNACK_WIDTH, SNACK_HEIGHT, ARGB);
-      snack.copy(snacks_sheet, BORDER + i * SNACK_WIDTH, BORDER + j * SNACK_HEIGHT, SNACK_WIDTH, SNACK_HEIGHT, 0, 0, SNACK_WIDTH, SNACK_HEIGHT);
-      snacks.add(new Snack(snack));
-    }
-  }
-}
-
-/*
  * Grabs a random snack from the snacks_sheet
  */
 void getSnack() {
