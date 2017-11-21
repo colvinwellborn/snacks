@@ -10,8 +10,12 @@ static final int BORDER = 2;         // size of border around snack_sheet
 static final int SNACK_WIDTH = 62;   // Width of a snack sprite
 static final int SNACK_HEIGHT = 62;  // Height of a snack sprite
 
+final color PINK = color(255, 106, 213);
+final color PURPLE = color(173, 140, 255);
+
 PImage snacks_sheet;                 // sprite sheet of all snacks
 ArrayList<Snack> snacks;             // a container for all Snack objects
+PFont font;                          // font object for cheesy 80's font
 
 /*
  * Prepares the canvas, loads the snack_sheet,
@@ -20,13 +24,15 @@ ArrayList<Snack> snacks;             // a container for all Snack objects
 void setup() {
   // set up screen
   size(600, 600);
-  background(0);
-  frameRate(60);
-
+  
   // load sprite sheet
   snacks_sheet = loadImage("snacks_nofill.png");
   snacks = new ArrayList<Snack>();
   addSnack();
+
+  // sets up the font
+  font = createFont("SFAlienEncounters-Italic.ttf", 100);
+  textFont(font);
 }
 
 /*
@@ -34,6 +40,18 @@ void setup() {
  */
 void draw() {
   background(0);
+  // Draw the gradient
+  for (int i = 0; i <= height; i++) {
+    float inter = map(i, 0, height, 0, 1);
+    color c = lerpColor(PINK, PURPLE, inter);
+    stroke(c);
+    line(0, i, width, i);
+  }
+  // Write the text
+  text("Snacks!", 65, 100, width, height);
+  text("Snacks!", 65, 250, width, height);
+  text("Snacks!", 65, 400, width, height);
+  //Display the snacks
   for (Snack s : snacks) {
     s.display();
     s.update();
