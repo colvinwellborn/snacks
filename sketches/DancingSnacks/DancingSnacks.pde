@@ -59,18 +59,12 @@ void getSnack() {
 }
 
 /*
- * Draws a random snack from the snacks array
+ * Handles key actions from user
  */
-void drawSnack() {
-  int i = int(random(0, snacks.size()));
-  snacks.get(i).display();
-}
-
 void keyPressed() {
   if (key == ' ') {
     getSnack();
   }
-
 }
 
 /*
