@@ -9,3 +9,5 @@ I love snacks
 ![Sgt. ChowDown](/resources/sgt-chowdown.jpg)
 
 ![Snack Buddies](resources/snacks.gif "Gotta have my snacks!")
+
+![ICECREAM](/resources/icecream.jpg)
