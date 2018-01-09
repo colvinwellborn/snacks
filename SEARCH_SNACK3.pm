@@ -1,7 +1,13 @@
 package SEARCH_SNACK3;
 use warnings;
-use strict;
+#use strict;
 
+# make sure we load Exporter
+# otherwise, how will we export nothing?
+our @ISA		= qw( Exporter );
+our %EXPORT_TAGS	= ( 'all' => [ qw( ) ] );
+our @EXPORT_OK		= ( @{$EXPORT_TAGS{'all'}} );
+our @EXPORT		= qw( );
 
 sub snackinventory {
 	my $mysql2 = shift;
@@ -238,7 +244,7 @@ sub snackinventory {
 	checkReturn($mysql2);
 }
 
-checkReturn {
+sub checkReturn {
 	my $return = shift;
 	return 1;
 }
