@@ -11,3 +11,5 @@ I love snacks
 ![Snack Buddies](resources/snacks.gif "Gotta have my snacks!")
 
 ![ICECREAM](/resources/icecream.jpg)
+
+![lamb-of-god](/resources/multiply.jpg)
