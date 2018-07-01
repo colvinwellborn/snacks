@@ -9,6 +9,8 @@ static final int SNACK_COUNT = 10;   // Number of sprites in a row of snacks_she
 static final int BORDER = 2;         // size of border around snack_sheet
 static final int SNACK_WIDTH = 62;   // Width of a snack sprite
 static final int SNACK_HEIGHT = 62;  // Height of a snack sprite
+static final int Y_COLLISION = 1;    // Represents two snacks intersecting vertically
+static final int X_COLLISION = 2;    // Represents two snacks intersecting horizontally 
 
 final color PINK = color(255, 106, 213);
 final color PURPLE = color(173, 140, 255);
@@ -43,7 +45,7 @@ void setup() {
  * Draws any snacks in the snacks ArrayList
  */
 void draw() {
-  while(isSplash) {
+  while (isSplash) {
     image(splash_screen, 0, 0);
     return;
   }
@@ -63,8 +65,18 @@ void draw() {
     s.display();
     s.update();
   }
+  for (int i = 0; i < snacks.size(); i++) {
+    for (int j = i + 1; j < snacks.size(); j++) {
+      if (snacks.get(i).intersects(snacks.get(j).getPos()) == Y_COLLISION) {
+        snacks.get(i).invertY();
+        snacks.get(j).invertY();
+      } else if (snacks.get(i).intersects(snacks.get(j).getPos()) == X_COLLISION) {
+        snacks.get(i).invertX();
+        snacks.get(j).invertX();
+      }
+    }
+  }
 }
-
 
 /*
  * Adds a snack to the snacks ArrayList
@@ -154,16 +166,38 @@ public class Snack {
   void update() {
     // Contain the x to the (0, width) range
     if (pos.x < 0 || pos.x > (width - SNACK_WIDTH)) {
-      vel.x *= -1;
+      this.invertX();
       this.snack = getSnack();
     }
     // Constrain the y to the (0, height) range
     if (pos.y < 0 || pos.y > (height - SNACK_HEIGHT)) {
-      vel.y *= -1;
+      this.invertY();
       this.snack = getSnack();
     }
     // Move the snack
-    pos.x += vel.x;
-    pos.y += vel.y;
+    pos.add(vel);
+  }
+
+  PVector getPos() {
+    return pos;
+  }
+
+  int intersects(PVector other) {
+    PVector dist = new PVector(abs(pos.x - other.x), abs(pos.y - other.y));
+    if (dist.x < SNACK_WIDTH && dist.y < SNACK_HEIGHT) {
+      if (dist.x < dist.y) {
+        return Y_COLLISION;
+      }
+      return X_COLLISION;
+    }
+    return 0;
+  }
+
+  void invertX() {
+    vel.x *= -1;
+  }
+
+  void invertY() {
+    vel.y *= -1;
   }
 }
