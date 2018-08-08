@@ -137,7 +137,9 @@ FFFFFFFFFFF              uuuuuuuu  uuuu   ccccccccccccccckkkkkkkk    kkkkkkk!!!
 choice_1_1 = input("\nDo you..\n A) Reach for the TV Remote..\n B) Reach for a glass of water..\n C) Get off the couch..\n ")
 if choice_1_1.lower() == 'a':
     print("\nThe remote is slightly out of reach. You slip off the couch weirdly onto your neck, becoming paralyzed for life.")
-    time.sleep(2)
+    pygame.mixer.music.load("crack.mp3")
+    pygame.mixer.music.play()
+    time.sleep(5)
     print("\nNo more snacks for you...\n")
 
     time.sleep(1)
@@ -150,7 +152,9 @@ elif choice_1_1.lower() == 'b':
     time.sleep(3)
 elif choice_1_1.lower() == 'c':
     print("\nYou get up too quickly and breathe in a particulary large chip crumb..\n")
-    time.sleep(1)
+    pygame.mixer.music.load("choke.mp3")
+    pygame.mixer.music.play()
+    time.sleep(3)
     print("You choke to death slowly on chip crumbs and your own fat neck..\n")
     time.sleep(2)
     print("No more snacks for you, buddy.\n")
