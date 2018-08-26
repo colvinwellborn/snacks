@@ -50,6 +50,7 @@ sub snackinventory {
 		"Cheese puff",
 		"Cheese",
 		"Cheez-Its",
+		"Cheezy-B",
 		"Cherries",
 		"Chifle",
 		"Chocolate bar",
